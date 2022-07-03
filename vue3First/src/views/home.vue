@@ -1,5 +1,5 @@
 <template>
-  <div>{{count}}</div>
+  <div></div>
 </template>
 
 <script setup>
@@ -7,7 +7,6 @@
  defineProps({
   msg: String
  })
- let count = ref(0)
 </script>
 <style scoped>
 
