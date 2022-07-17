@@ -1,16 +1,29 @@
+<template>
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <HelloWorld msg="Hello Vue 3 + Vite" @count="count" />
+  <Project1></Project1>
+  <button @click="changeName">更改project1组件名字</button>
+</template>
+
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-function count(val){
-  console.log('父组件val',val)
+import { provide, ref } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import Project1 from "./components/Project1.vue";
+function count(val) {
+  console.log("父组件val", val);
+}
+// 此时name不具有响应式
+provide("name", "张三provide");
+
+// 此时name2具有响应式
+const name2 = ref("张三provide");
+provide("name2", name2);
+function changeName() {
+  // name.value = "Lisi";
+  name2.value = "Lisi";
 }
 </script>
 
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" @count='count'/>
-</template>
 
 <style>
 #app {
