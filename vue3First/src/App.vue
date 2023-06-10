@@ -1,14 +1,15 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <HelloWorld msg="Hello Vue 3 + Vite" @count="count" />
+  <!-- <HelloWorld msg="Hello Vue 3 + Vite" @count="count" />
   <Project1></Project1>
-  <button @click="changeName">更改project1组件名字</button>
+  <button @click="changeName">更改project1组件名字</button> -->
+  <homeview></homeview>
 </template>
 
 <script setup>
 import { provide, ref } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Project1 from "./components/Project1.vue";
+import homeview from '@/views/home.vue'
 function count(val) {
   console.log("父组件val", val);
 }
