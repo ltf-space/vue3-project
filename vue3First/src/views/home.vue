@@ -1,26 +1,32 @@
 <template>
   <div>
     <maptool @evtParams="evtParams"></maptool>
-    <mapDialog ref="mapDialog" @close="showDialog = false" v-if="showDialog"></mapDialog>
+    <mapDialog
+      ref="mapDialogs"
+      @close="showDialog = false"
+      v-if="showDialog"
+    ></mapDialog>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import maptool from '../map/index.vue'
-import mapDialog from './mapDialog.vue'
+import { nextTick, onMounted, ref } from "vue";
+import maptool from "../map/index.vue";
+import mapDialog from "./mapDialog.vue";
 defineProps({
-  msg: String
-})
+  msg: String,
+});
 // 弹窗显示
-let showDialog = ref(false)
+const mapDialogs = ref(null);
+let showDialog = ref(false);
 const evtParams = (evt) => {
-  console.log('evt', evt)
-  showDialog = true
-  const mapDialog = ref(null)
-  console.log('mapDialog',mapDialog)
-  const overlay = window.lMap.addPopup(mapDialog.$el)
-  overlay.setPosition(evt)
-}
+  console.log("evt", evt);
+  showDialog.value = true;
+  nextTick(() => {
+    const el = mapDialogs.value.$el;
+    const overlay = window.lMap.addPopup(el);
+    overlay.setPosition(evt);
+  });
+};
 </script>
 <style scoped></style>
