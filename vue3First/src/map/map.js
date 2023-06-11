@@ -9,7 +9,7 @@ import Draw, { createBox } from "ol/interaction/Draw";
 import Feature from "ol/Feature";
 import View from "ol/View";
 
-import Overlay from 'ol/Overlay.js';
+import Overlay from "ol/Overlay.js";
 import { fromExtent, fromCircle } from "ol/geom/Polygon";
 import {
   Point,
@@ -33,8 +33,7 @@ import { GeoJSON, WKT } from "ol/format";
 
 class Map {
   constructor(map) {
-    this.map = map || window.map
-
+    this.map = map || window.map;
   }
   // 创建一个新图层
   createLayer(source, name, addMap = true, params = {}) {
@@ -75,7 +74,7 @@ class Map {
   createByUrl(url, params = {}) {
     let layer = new Tile({
       zIndex: params.zIndex || 9,
-      name: '',
+      name: "",
       title: "测试标题",
       visible: true,
       source: new XYZ({
@@ -84,14 +83,14 @@ class Map {
         projection: "EPSG:4326",
       }),
     });
-    this.map.addLayer(layer)
-    return layer
+    this.map.addLayer(layer);
+    return layer;
   }
   // 添加icon
   addicon(feature) {
     const iconFeature = new Feature({
       geometry: new Point([0, 0]),
-      name: 'Null Island',
+      name: "Null Island",
       population: 4000,
       rainfall: 500,
     });
@@ -99,9 +98,9 @@ class Map {
     const iconStyle = new Style({
       image: new Icon({
         anchor: [0.5, 46],
-        anchorXUnits: 'fraction',
-        anchorYUnits: 'pixels',
-        src: 'data/icon.png',
+        anchorXUnits: "fraction",
+        anchorYUnits: "pixels",
+        src: "data/icon.png",
       }),
     });
 
@@ -112,18 +111,18 @@ class Map {
     });
   }
   // 添加popup
-  addPopup(ele){
+  addPopup(ele) {
     const overlay = new Overlay({
       element: ele,
+      offset: [0, 0],
       autoPan: {
         animation: {
           duration: 250,
         },
       },
     });
-    this.map.addOverlay(overlay)
-    return overlay
+    this.map.addOverlay(overlay);
+    return overlay;
   }
-
 }
-export default Map
+export default Map;
